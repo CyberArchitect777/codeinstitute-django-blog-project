@@ -11,6 +11,7 @@ class Post(models.Model):
     author = models.ForeignKey(
 	    User, on_delete=models.CASCADE, related_name="blog_posts"
     ) # One-to-many database relationship. Cascade on delete means that all posts are deleted if the user who writes them is deleted.
+    excerpt = models.TextField(blank=True) # Is non-required
     content = models.TextField() # Blog article content
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
