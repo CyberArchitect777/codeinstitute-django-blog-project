@@ -5,11 +5,16 @@ from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 
-queryset = Post.objects.first()
-about = get_object_or_404(queryset)
+def about_me(request):
+    """
+    Renders the About page
+    """
+    queryset = About.objects.first()
+    #about = get_object_or_404(queryset, request)
+    about = About.objects.all().order_by('-updated_on').first()
 
-return render(
-    request,
-    "about/about.html",
-    { "about": about }
-)
+    return render(
+        request,
+        "about/about.html",
+        { "about": about },
+    )
