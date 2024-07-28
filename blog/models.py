@@ -1,4 +1,5 @@
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 from django.db import models
 
 # Create your models here.
@@ -11,6 +12,7 @@ class Post(models.Model):
     author = models.ForeignKey(
 	    User, on_delete=models.CASCADE, related_name="blog_posts"
     ) # One-to-many database relationship. Cascade on delete means that all posts are deleted if the user who writes them is deleted.
+    featured_image = CloudinaryField('image', default='placeholder')
     excerpt = models.TextField(blank=True) # Is non-required
     content = models.TextField() # Blog article content
     created_on = models.DateTimeField(auto_now_add=True)
