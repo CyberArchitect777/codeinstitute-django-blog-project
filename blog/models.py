@@ -7,6 +7,9 @@ from django.db import models
 STATUS = ((0, "Draft"), (1, "Published"))
 
 class Post(models.Model):
+    """
+        Stores a single blog post entry related to :model:'auth.User' (Linked to the User table in the auth app)
+    """
     title = models.CharField(max_length=200, unique=True) # The title value should be unique to avoid blog entries with the same name.
     slug = models.SlugField(max_length=200, unique=True) # Slug is an article that is still in production in the newspaper industry. In this case, it’ll store the URL of the article.
     author = models.ForeignKey(
